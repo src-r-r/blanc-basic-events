@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from six import python_2_unicode_compatible
 
 from blanc_basic_assets.fields import AssetForeignKey
 
@@ -16,7 +16,7 @@ EVENTS_START_SUNDAY = getattr(settings, 'EVENTS_START_SUNDAY', True)
 class SpecialEvent(models.Model):
     title = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, unique=True)
-    image = AssetForeignKey('assets.Image', null=True, blank=True)
+    image = AssetForeignKey('assets.Image', null=True, blank=True, on_delete=models.CASCADE)
     summary = models.CharField(
         max_length=100, help_text='A short sentence description of the event')
     description = models.TextField(help_text='All of the event details we have')

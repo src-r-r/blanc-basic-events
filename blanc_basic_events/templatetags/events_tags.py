@@ -8,7 +8,7 @@ from ..models import SpecialEvent
 register = template.Library()
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_upcoming_events(limit=None):
     event_list = SpecialEvent.objects.filter(end_date__gte=datetime.date.today(), published=True)
 

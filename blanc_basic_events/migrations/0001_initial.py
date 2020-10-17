@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 ('end', models.DateTimeField(help_text='End time/date.')),
                 ('end_date', models.DateField(editable=False, db_index=True)),
                 ('published', models.BooleanField(default=True, db_index=True)),
-                ('image', blanc_basic_assets.fields.AssetForeignKey(blank=True, null=True, to='assets.Image')),
+                ('image', blanc_basic_assets.fields.AssetForeignKey(blank=True, null=True, to='assets.Image', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ('start',),
